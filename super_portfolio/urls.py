@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from projects.views import ProfileViewSet
+from projects.views import ProfileViewSet, ProjectViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -27,6 +27,7 @@ from rest_framework_simplejwt.views import (
 
 router = routers.DefaultRouter()
 router.register(r"profiles", ProfileViewSet)
+router.register(r"projects", ProjectViewSet)
 
 
 urlpatterns = [
