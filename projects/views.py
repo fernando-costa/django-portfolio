@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from django.shortcuts import get_object_or_404, render
+from rest_framework import viewsets, permissions
 from projects.models import Profile, Project
 from projects.serializers import ProfileSerializer, ProjectSerializer
 
@@ -7,6 +8,19 @@ from projects.serializers import ProfileSerializer, ProjectSerializer
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [permissions.AllowAny()]
+        return [permissions.IsAuthenticated()]
+
+    def retrieve(self, request, *args, **kwargs):
+        if request.method == "GET":
+            profile_id = kwargs["pk"]
+            profile = get_object_or_404(Profile, id=profile_id)
+
+            return render(request, "profile_detail.html", {"profile": profile})
+        return super().retrieve(request, *args, **kwargs)
 
 
 class ProjectViewSet(viewsets.ModelViewSet):

@@ -1,0 +1,38 @@
+{% extends 'base_template.html' %}
+
+{% block title %}{{ profile.name }} Profile{% endblock %}
+
+{% block content %}
+<section class="main-containter">
+    <section class="profile-infos-container">
+        <h1 class="section-title">{{ profile.name }} Profile</h1>
+        <img src="" alt="" class="profile-infos-image">
+        <div class="profile-infos">{{ profile.name }}</div>
+        <div class="profile-infos">{{ profile.github }}</div>
+        <div class="profile-infos">{{ profile.linkedin }}</div>
+        <div class="bio-container" id="profile-bio">{{ profile.bio }}</div>
+    </section>
+    <!-- <section class="certificates-container">
+     {% for certificate in profile.certificates %}
+        <div class="certificates-institution">
+            <h2></h2>
+        </div>
+     {% empty %}
+        <h3>No certificates to show</h3>
+     {% endfor %}
+    </section> -->
+    <section class="projects-container">
+     {% for project in profile.projects.all %}
+        <div class="project-card">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <h4 class="project-github-url">{{ project.url }}</h4>
+            <h4 class="project-description">{{ project.description }}</h4>
+            <h6 class="project-key-skill">{{ project.key_skill }}</h4>
+            <h6 class="project-keyword">{{ project.keyword }}</h5>
+        </div>
+     {% empty %}
+        <h3>No projects to show</h3>
+     {% endfor %}
+    </section>
+</section>
+{% endblock %}
