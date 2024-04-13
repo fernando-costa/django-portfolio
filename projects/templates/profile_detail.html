@@ -13,26 +13,30 @@
         <div class="bio-container" id="profile-bio">{{ profile.bio }}</div>
     </section>
     <!-- <section class="certificates-container">
-     {% for certificate in profile.certificates %}
+        {% for certificate in profile.certificates.all %}
         <div class="certificates-institution">
-            <h2></h2>
+        {% for institution in certificate.certifying_institution.all %}
+            <h2 class="certifying-institution-name">{{ institution.name }}</h2>
+            <h2 class="certifying-institution-url">{{ institution.url }}</h2>
+            <h3 class="certificate-name">{{ certificate.name }}</h3>
+        {% endfor %}
         </div>
-     {% empty %}
+        {% empty %}
         <h3>No certificates to show</h3>
-     {% endfor %}
+        {% endfor %}
     </section> -->
     <section class="projects-container">
-     {% for project in profile.projects.all %}
+        {% for project in profile.projects.all %}
         <div class="project-card">
-            <h3 class="project-title">{{ project.title }}</h3>
+            <h3 class="project-title">{{ project.name }}</h3>
             <h4 class="project-github-url">{{ project.url }}</h4>
             <h4 class="project-description">{{ project.description }}</h4>
             <h6 class="project-key-skill">{{ project.key_skill }}</h4>
-            <h6 class="project-keyword">{{ project.keyword }}</h5>
+                <h6 class="project-keyword">{{ project.keyword }}</h5>
         </div>
-     {% empty %}
+        {% empty %}
         <h3>No projects to show</h3>
-     {% endfor %}
+        {% endfor %}
     </section>
 </section>
 {% endblock %}

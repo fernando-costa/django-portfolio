@@ -1,7 +1,17 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework import viewsets, permissions
-from projects.models import Profile, Project
-from projects.serializers import ProfileSerializer, ProjectSerializer
+from projects.models import (
+    Certificate,
+    CertifyingInstitution,
+    Profile,
+    Project,
+)
+from projects.serializers import (
+    CertificateSerializer,
+    CertifyingInstitutionSerializer,
+    ProfileSerializer,
+    ProjectSerializer,
+)
 
 
 # Create your views here.
@@ -26,3 +36,13 @@ class ProfileViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+class CertifyingInstitutionViewSet(viewsets.ModelViewSet):
+    queryset = CertifyingInstitution.objects.all()
+    serializer_class = CertifyingInstitutionSerializer
+
+
+class CertificateViewSet(viewsets.ModelViewSet):
+    queryset = Certificate.objects.all()
+    serializer_class = CertificateSerializer

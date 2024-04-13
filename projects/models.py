@@ -61,9 +61,53 @@ class Project(models.Model):
         blank=False,
     )
     profile = models.ForeignKey(
-        "Profile",
+        Profile,
         on_delete=models.CASCADE,
         related_name="projects",
+    )
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class CertifyingInstitution(models.Model):
+    name = models.CharField(
+        max_length=100,
+        validators=[MaxLengthValidator(limit_value=500)],
+        null=False,
+        blank=False,
+    )
+    url = models.URLField(
+        validators=[MaxLengthValidator(limit_value=500)],
+        null=False,
+        blank=False,
+    )
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class Certificate(models.Model):
+    name = models.CharField(
+        max_length=100,
+        validators=[MaxLengthValidator(limit_value=500)],
+        null=False,
+        blank=False,
+    )
+    certifying_institution = models.ForeignKey(
+        CertifyingInstitution,
+        on_delete=models.CASCADE,
+        related_name="certificates"
+    )
+    timestamp = models.DateTimeField(
+        auto_now_add=True,
+        validators=[MaxLengthValidator(limit_value=500)],
+        null=False,
+        blank=False,
+    )
+    profiles = models.ManyToManyField(
+        Profile,
+        related_name="certificates",
     )
 
     def __str__(self) -> str:
