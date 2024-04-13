@@ -17,7 +17,10 @@
         <div class="certificates-institution">
             <h3 class="certificate-name">{{ certificate.name }}</h3>
             <h4 class="certifying-institution-name">
-                {{ certificate.certifying_institution }}
+                {{ certificate.certifying_institution.name }}
+            </h4>
+            <h4 class="certifying-institution-url">
+                {{ certificate.certifying_institution.url }}
             </h4>
         </div>
         {% empty %}
