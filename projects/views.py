@@ -27,7 +27,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         if request.method == "GET":
             profile_id = kwargs["pk"]
-            profile = get_object_or_404(Profile, id=profile_id)
+            profile = get_object_or_404(
+                Profile.objects.filter(id=profile_id).prefetch_related(
+                    "certificates"
+                )
+            )
 
             return render(request, "profile_detail.html", {"profile": profile})
         return super().retrieve(request, *args, **kwargs)

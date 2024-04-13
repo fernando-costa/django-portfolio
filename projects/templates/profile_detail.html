@@ -12,19 +12,18 @@
         <div class="profile-infos">{{ profile.linkedin }}</div>
         <div class="bio-container" id="profile-bio">{{ profile.bio }}</div>
     </section>
-    <!-- <section class="certificates-container">
+    <section class="certificates-container">
         {% for certificate in profile.certificates.all %}
         <div class="certificates-institution">
-        {% for institution in certificate.certifying_institution.all %}
-            <h2 class="certifying-institution-name">{{ institution.name }}</h2>
-            <h2 class="certifying-institution-url">{{ institution.url }}</h2>
             <h3 class="certificate-name">{{ certificate.name }}</h3>
-        {% endfor %}
+            <h4 class="certifying-institution-name">
+                {{ certificate.certifying_institution }}
+            </h4>
         </div>
         {% empty %}
         <h3>No certificates to show</h3>
         {% endfor %}
-    </section> -->
+    </section>
     <section class="projects-container">
         {% for project in profile.projects.all %}
         <div class="project-card">
