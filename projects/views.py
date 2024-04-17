@@ -32,8 +32,16 @@ class ProfileViewSet(viewsets.ModelViewSet):
                     "certificates"
                 )
             )
+            certifying_instutitions = {
+                certificate.certifying_institution
+                for certificate in profile.certificates.all()
+            }
 
-            return render(request, "profile_detail.html", {"profile": profile})
+            return render(
+                request,
+                "profile_detail.html",
+                {"profile": profile, "institutions": certifying_instutitions},
+            )
         return super().retrieve(request, *args, **kwargs)
 
 
