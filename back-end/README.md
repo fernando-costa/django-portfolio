@@ -75,7 +75,7 @@ docker run -d -p 3306:3306 --name=super-portfolio-mysql-container -e MYSQL_ROOT_
 5. Migrate and populate database
 
 ``` shell
-python3 manage.py makemigration && python3 manage.py migrate
+python3 manage.py makemigrations && python3 manage.py migrate
 ```
 
 6. Create a superuser
